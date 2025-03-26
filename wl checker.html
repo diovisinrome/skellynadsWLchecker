@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whitelist Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h2 {
+            text-align: center;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Whitelist Checker</h2>
+        <input type="text" id="walletAddress" placeholder="Enter your wallet address" />
+        <button onclick="checkWhitelist()">Check Whitelist</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        // Whitelist addresses (for now, hardcoded, later you can fetch this from a file or server)
+        const whitelist = [
+			"0x298378cec837ed7cfe489d40acc4651fde1e465f",
+			"0xC5ab0f9700E4389f8320F28Be663729a19359Ebb",
+			"0x3235AEcbC86cc6116eD046651ff280c5dC26999C",
+			"0xd0a51bf7469e1761ff18AD069133585D4321f5f9",
+        ];
+
+        function checkWhitelist() {
+            const inputAddress = document.getElementById("walletAddress").value.trim();
+            const resultDiv = document.getElementById("result");
+
+            if (inputAddress === "") {
+                resultDiv.innerHTML = "Please enter a wallet address.";
+                return;
+            }
+
+            // Check if the input address is in the whitelist
+            if (whitelist.includes(inputAddress)) {
+                resultDiv.innerHTML = "<span style='color: green;'>Your address is on the whitelist!</span>";
+            } else {
+                resultDiv.innerHTML = "<span style='color: red;'>Your address is not on the whitelist.</span>";
+            }
+        }
+    </script>
+</body>
+</html>
